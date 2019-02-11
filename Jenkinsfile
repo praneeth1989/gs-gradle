@@ -1,13 +1,12 @@
 node {
-  def myGradleContainer = docker.image('gradle:jdk8')
+  def myGradleContainer = docker.image('gradle:4.2.1-jdk8-alpine')
   myGradleContainer.pull()
   stage('prep') {
     checkout scm
   }
   stage('test') {
-    echo '${env.HOME}'
      myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
-      sudo sh 'cd /var/jenkins_home/workspace/GITHUB_REPO_gs-gradle_master/complete && ./gradlew test'
+      sudo sh 'cd complete && ./gradlew test'
      }
   }
   stage('run') {
