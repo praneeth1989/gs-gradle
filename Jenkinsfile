@@ -5,6 +5,7 @@ node {
     checkout scm
   }
   stage('test') {
+    echo '${env.HOME}'
      myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
       sudo sh 'cd /var/jenkins_home/workspace/GITHUB_REPO_gs-gradle_master/complete && ./gradlew test'
      }
