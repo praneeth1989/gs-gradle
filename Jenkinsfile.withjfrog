@@ -6,12 +6,12 @@ node {
     checkout scm
   }
   stage('build') {
-     myGradleContainer.inside('-u root')("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+     myGradleContainer.inside("-u root")("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
        sh 'cd complete && ./gradlew build'
      }
   }
   stage('test') {
-     myGradleContainer.inside('-u root')("-v {$env.HOME}/.gradle:/home/gradle/.gradle") {
+     myGradleContainer.inside("-u root")("-v {$env.HOME}/.gradle:/home/gradle/.gradle") {
        sh 'cd complete && ./gradlew test'
      }
   }
