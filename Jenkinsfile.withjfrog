@@ -5,16 +5,14 @@ node {
   stage('prep') {
     checkout scm
   }
-   stage('test') {
+   stage('build') {
      myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
-       sh 'cd complete'
-       sh './gradlew build'
+       sh 'cd complete && ./gradlew build'
      }
   }
-  stage('run') {
+  stage('test') {
      myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
-     sh '#!/bin/bash'
-       sh 'cd complete && ./gradlew run'
+       sh 'cd complete && ./gradlew test'
      }
   }
   stage('publish') {
