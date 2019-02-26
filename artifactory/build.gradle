@@ -35,7 +35,7 @@ dependencies {
 publishing {
     publications {
         jar(MavenPublication) {
-            groupId 'jenkinsnew'
+            groupId 'atmecsjfrog'
             artifactId 'gs-gradle'
             version '1.0'
             from components.java
